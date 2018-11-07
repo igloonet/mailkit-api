@@ -1,0 +1,2 @@
+[![Build Status](https://travis-ci.com/igloonet/mailkit-api.svg?branch=master)](https://travis-ci.com/igloonet/mailkit-api)
+[![Coverage Status](https://coveralls.io/repos/github/igloonet/mailkit-api/badge.svg?branch=master)](https://coveralls.io/github/igloonet/mailkit-api?branch=master)
