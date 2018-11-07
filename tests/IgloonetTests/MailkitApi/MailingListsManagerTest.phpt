@@ -33,7 +33,7 @@ class MailingListsManagerTest extends MailkitTestCase
 	public function testCreateMailingList()
 	{
 		/** @var MailingList $result */
-		$result = $this->mailingListManager->createMailingList('Jméno seznamu příjemců', 'Jméno seznamu příjemců');
+		$result = $this->mailingListManager->createMailingList('mailingList');
 
 		Assert::same(12345, $result->getId());
 	}

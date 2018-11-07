@@ -26,7 +26,7 @@ class MessagesManagerTest extends MailkitTestCase
 		$message = new Message($user);
 
 		/** @var SendMailResult $result */
-		$result = $this->messagesManager->sendMail($message, 1, 1);
+		$result = $this->messagesManager->sendMail($message, 12345, 1);
 
 		Assert::same(12345678, $result->getEmailId());
 		Assert::same(12345, $result->getSendingId());
