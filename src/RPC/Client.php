@@ -9,10 +9,10 @@ use Igloonet\MailkitApi\RPC\Responses\IRpcResponse;
 
 class Client
 {
-	/** @var XmlAdapter|null  */
+	/** @var XmlAdapter  */
 	private $xmlAdapter = null;
 
-	/** @var JsonAdapter|null  */
+	/** @var JsonAdapter  */
 	private $jsonAdapter = null;
 
 

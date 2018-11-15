@@ -161,7 +161,7 @@ class XmlSuccessRpcResponse extends SuccessRpcResponse
 			));
 		}
 
-		return $this->arrayValue['data'];
+		return (int)$this->arrayValue['data'];
 	}
 
 	/**

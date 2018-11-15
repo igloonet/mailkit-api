@@ -105,7 +105,7 @@ abstract class BaseManager
 			'prefix' => $this->encodeString($user->getPrefix()),
 			'first_name' => $this->encodeString($user->getFirstName()),
 			'last_name' => $this->encodeString($user->getLastName()),
-			'status' => $this->encodeString($user->getStatus()),
+			'status' => $user->getStatus(),
 			'email' => $this->encodeString($user->getEmail()),
 			'reply_to' => $this->encodeString($user->getReplyTo()),
 			'company' => $this->encodeString($user->getCompany()),
@@ -121,7 +121,7 @@ abstract class BaseManager
 			'mobile' => $this->encodeString($user->getMobile()),
 			'phone' => $this->encodeString($user->getPhone()),
 			'fax' => $this->encodeString($user->getFax()),
-			'gender' => $this->encodeString($user->getGender())
+			'gender' => $user->getGender()
 		];
 
 		$data3 = [];

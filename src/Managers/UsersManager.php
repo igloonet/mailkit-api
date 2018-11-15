@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Igloonet\MailkitApi\Managers;
 
 use Igloonet\MailkitApi\DataObjects\Enums\Gender;
+use Igloonet\MailkitApi\DataObjects\Enums\InsertStatus;
 use Igloonet\MailkitApi\DataObjects\Enums\UserStatus;
 use Igloonet\MailkitApi\DataObjects\User;
 use Igloonet\MailkitApi\Exceptions\User\TooManyStatusResultsException;
@@ -368,7 +369,7 @@ class UsersManager extends BaseManager
 			}
 
 			if (isset($value['status']) && is_numeric($value['status'])) {
-				$user->setInsertStatus((int)$value['status']);
+				$user->setInsertStatus(InsertStatus::get($value['status']));
 			}
 		}
 

@@ -63,7 +63,7 @@ class MailingList
 	 */
 	public function setStatus(?string $status): self
 	{
-		$this->status = $this->isValidStatus($status) ? $status : null;
+		$this->status = $this->isValidStatus($status) ? MailingListStatus::get($status) : null;
 
 		return $this;
 	}

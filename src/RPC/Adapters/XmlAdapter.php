@@ -40,7 +40,6 @@ class XmlAdapter extends BaseAdapter
 	 * @param array $params
 	 * @param array $possibleErrors
 	 * @return IRpcResponse
-	 * @throws RpcRequestFailedException|InvalidRpcResponseException|UnauthorizedException
 	 */
 	public function sendRequest(string $method, array $params, array $possibleErrors): IRpcResponse
 	{
