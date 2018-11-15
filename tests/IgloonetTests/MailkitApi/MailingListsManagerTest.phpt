@@ -9,6 +9,7 @@ require_once __DIR__ . '/../bootstrap.php';
 
 class MailingListsManagerTest extends MailkitTestCase
 {
+	/** @var MailingListsManager */
 	private $mailingListManager;
 
 	protected function setUp()

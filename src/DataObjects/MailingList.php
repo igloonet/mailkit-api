@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Igloonet\MailkitApi\DataObjects;
 
+use Igloonet\MailkitApi\DataObjects\Enums\MailingListStatus;
+
 class MailingList
 {
 	/** @var int|null */
@@ -56,10 +58,10 @@ class MailingList
 	}
 
 	/**
-	 * @param MailingListStatus|null $status
+	 * @param string|null $status
 	 * @return $this
 	 */
-	public function setStatus(?MailingListStatus $status): self
+	public function setStatus(?string $status): self
 	{
 		$this->status = $this->isValidStatus($status) ? $status : null;
 
@@ -67,20 +69,20 @@ class MailingList
 	}
 
 	/**
-	 * @return string|null
+	 * @return MailingListStatus|null
 	 */
-	public function getStatus(): ?string
+	public function getStatus(): ?MailingListStatus
 	{
 		return $this->status;
 	}
 
 	/**
-	 * @param MailingListStatus|null $status
+	 * @param string|null $status
 	 * @return bool
 	 */
-	private function isValidStatus(?MailingListStatus $status): bool
+	private function isValidStatus(?string $status): bool
 	{
-		return in_array($status, [MailingListStatus::STATUS_ENABLED, MailingListStatus::STATUS_DISABLED]);
+		return in_array($status, [MailingListStatus::STATUS_ENABLED, MailingListStatus::STATUS_DISABLED], true);
 	}
 
 	/**
@@ -105,11 +107,11 @@ class MailingList
 	/**
 	 * @param int $id
 	 * @param string $name
-	 * @param MailingListStatus $status
+	 * @param string $status
 	 * @param string $description
 	 * @return MailingList
 	 */
-	public static function create(int $id, string $name, MailingListStatus $status, string $description): self
+	public static function create(int $id, string $name, string $status, string $description): self
 	{
 		$mailingList = new static();
 

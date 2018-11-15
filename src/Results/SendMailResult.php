@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Igloonet\MailkitApi\Results;
 
-use Igloonet\MailkitApi\DataObjects\SendMailResultStatus;
+use Igloonet\MailkitApi\DataObjects\Enums\SendMailResultStatus;
 use Igloonet\MailkitApi\Exceptions\InvalidResponseException;
 use Igloonet\MailkitApi\RPC\Responses\IRpcResponse;
 
@@ -64,7 +64,7 @@ class SendMailResult implements IApiMethodResult
 
 	/**
 	 * @param IRpcResponse $rpcResponse
-	 * @return $this
+	 * @return SendMailResult
 	 */
 	public static function fromRpcResponse(IRpcResponse $rpcResponse): self
 	{

@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Igloonet\MailkitApi\DataObjects;
 
+use Igloonet\MailkitApi\DataObjects\Enums\Gender;
+use Igloonet\MailkitApi\DataObjects\Enums\InsertStatus;
+use Igloonet\MailkitApi\DataObjects\Enums\UserStatus;
 use Igloonet\MailkitApi\Exceptions\User\InvalidCustomFieldNumberException;
 
 class User
@@ -124,14 +127,14 @@ class User
 	 */
 	private function isValidStatus(?UserStatus $status): bool
 	{
-		return in_array($status, UserStatus::getAvailableValues());
+		return in_array($status, UserStatus::getAvailableValues(), true);
 	}
 
 	/**
-	 * @param int|null $insertStatus
+	 * @param InsertStatus|null $insertStatus
 	 * @return $this
 	 */
-	public function setInsertStatus(?int $insertStatus): self
+	public function setInsertStatus(?InsertStatus $insertStatus): self
 	{
 		$this->insertStatus = $this->isValidInsertStatus($insertStatus) ? $insertStatus : null;
 
@@ -141,18 +144,18 @@ class User
 	/**
 	 * @return InsertStatus|null
 	 */
-	public function getInsertStatus(): ?int
+	public function getInsertStatus(): ?InsertStatus
 	{
 		return $this->insertStatus;
 	}
 
 	/**
-	 * @param null|int $insertStatus
+	 * @param InsertStatus|null $insertStatus
 	 * @return bool
 	 */
-	private function isValidInsertStatus(?int $insertStatus): bool
+	private function isValidInsertStatus(?InsertStatus $insertStatus): bool
 	{
-		return $insertStatus !== null && in_array($insertStatus, InsertStatus::getAvailableValues());
+		return $insertStatus !== null && in_array($insertStatus, InsertStatus::getAvailableValues(), true);
 	}
 
 	/**
@@ -294,7 +297,7 @@ class User
 	 */
 	public function setGender(?string $gender): self
 	{
-		$this->gender = $gender !== null && $this->isValidGender($gender) ? $gender : null;
+		$this->gender = $gender !== null && $this->isValidGender($gender) ? Gender::get($gender) : null;
 
 		return $this;
 	}
@@ -321,7 +324,7 @@ class User
 			'zena',
 			'm',
 			'f'
-		]);
+		], true);
 	}
 
 	/**
@@ -550,7 +553,9 @@ class User
 	{
 		$this->assertValidCustomFieldNumber($fieldNumber);
 
-		$this->customFields[$fieldNumber] = $value;
+		if ($value !== null) {
+			$this->customFields[$fieldNumber] = $value;
+		}
 
 		return $this;
 	}

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Igloonet\MailkitApi\DataObjects;
+namespace Igloonet\MailkitApi\DataObjects\Enums;
 
 class SendMailResultStatus extends \Consistence\Enum\Enum
 {

@@ -49,7 +49,11 @@ class Attachment
 				throw new AttachmentFileNotReadableException($this->filePath);
 			}
 
-			return file_get_contents($this->filePath);
+			$fileContent = file_get_contents($this->filePath);
+
+			if ($fileContent !== false) {
+				return $fileContent;
+			}
 		}
 
 		throw new AttachmentEmptyContentException(

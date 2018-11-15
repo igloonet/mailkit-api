@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Igloonet\MailkitApi\Managers;
 
+use Igloonet\MailkitApi\DataObjects\Enums\Gender;
+use Igloonet\MailkitApi\DataObjects\Enums\UserStatus;
 use Igloonet\MailkitApi\DataObjects\User;
 use Igloonet\MailkitApi\Exceptions\User\TooManyStatusResultsException;
 use Igloonet\MailkitApi\Exceptions\User\UserCreationBadEmailSyntaxException;
@@ -107,7 +109,7 @@ class UsersManager extends BaseManager
 			$user->setPrefix($userData['PREFIX'] ?? null);
 			$user->setPhone($userData['PHONE'] ?? null);
 			$user->setStreet($userData['STREET'] ?? null);
-			$user->setStatus($userData['STATUS'] ?? null);
+			$user->setStatus(UserStatus::get($userData['STATUS']) ?? null);
 			$user->setCity($userData['CITY'] ?? null);
 			$user->setCompany($userData['COMPANY'] ?? null);
 			$user->setFirstName($userData['FIRST_NAME'] ?? null);

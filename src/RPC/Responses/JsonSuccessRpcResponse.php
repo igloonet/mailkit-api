@@ -86,7 +86,7 @@ class JsonSuccessRpcResponse extends SuccessRpcResponse
 			));
 		}
 
-		return $this->data['data'];
+		return (int)$this->data['data'];
 	}
 
 	/**

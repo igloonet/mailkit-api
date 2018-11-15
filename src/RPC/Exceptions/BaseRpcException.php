@@ -15,7 +15,7 @@ abstract class BaseRpcException extends \RuntimeException implements RpcExceptio
 
 	public function __construct(
 		string $method,
-		$requestData,
+		array $requestData,
 		string $message = '',
 		int $code = 0,
 		Throwable $previous = null

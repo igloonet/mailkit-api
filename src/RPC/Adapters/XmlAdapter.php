@@ -13,8 +13,10 @@ use Nette\Utils\Strings;
 
 class XmlAdapter extends BaseAdapter
 {
+	/** @var string  */
 	private $apiUrl = 'https://api.mailkit.eu/rpc.fcgi';
 
+	/** @var string  */
 	private $encoding = 'UTF-8';
 
 	public function __construct(string $clientId, string $clientMd5, string $encoding = null)
@@ -121,11 +123,11 @@ class XmlAdapter extends BaseAdapter
 
 	/**
 	 * @param string $method
-	 * @param $requestData
-	 * @param $options
+	 * @param array $requestData
+	 * @param array $options
 	 * @return bool|string
 	 */
-	protected function getContent(string $method, $requestData, $options)
+	protected function getContent(string $method, array $requestData, array $options)
 	{
 		$request = xmlrpc_encode_request($method, $requestData, $options);
 

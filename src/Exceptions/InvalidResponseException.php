@@ -8,6 +8,7 @@ use Throwable;
 
 class InvalidResponseException extends \RuntimeException implements MailkitApiException
 {
+	/** @var IRpcResponse|null  */
 	private $response = null;
 
 	public function __construct(IRpcResponse $response, string $message = '', int $code = 0, Throwable $previous = null)

@@ -12,8 +12,8 @@ abstract class BaseRpcResponseException extends BaseRpcException
 
 	public function __construct(
 		string $method,
-		$requestData,
-		$responseData,
+		array $requestData,
+		array $responseData,
 		string $message = '',
 		int $code = 0,
 		Throwable $previous = null

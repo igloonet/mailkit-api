@@ -45,6 +45,7 @@ class JsonAdapter extends BaseAdapter
 		'mailkit.report.raw.bounces'
 	];
 
+	/** @var string  */
 	private $apiUrl = 'https://api.mailkit.eu/json.fcgi';
 
 	/**
@@ -53,7 +54,7 @@ class JsonAdapter extends BaseAdapter
 	 */
 	public function supportsMethod(string $method): bool
 	{
-		return in_array($method, self::SUPPORTED_METHODS);
+		return in_array($method, self::SUPPORTED_METHODS, true);
 	}
 
 	/**
@@ -96,7 +97,7 @@ class JsonAdapter extends BaseAdapter
 				throw new UnauthorizedException($method, $requestData, '', (int)$responseData['error_status']);
 			} elseif (Strings::startsWith(trim($error), 'Disallowed IP')) {
 				throw new UnauthorizedException($method, $requestData, $error, (int)$responseData['error_status']);
-			} elseif (!in_array($error, $possibleErrors)) {
+			} elseif (!in_array($error, $possibleErrors, true)) {
 				throw new RpcResponseUnknownErrorException(
 					$method,
 					$requestData,

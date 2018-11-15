@@ -15,7 +15,7 @@ class RpcResponseUnknownErrorException extends BaseRpcException
 
 	public function __construct(
 		string $method,
-		$requestData,
+		array $requestData,
 		string $error,
 		array $possibleErrors,
 		string $message = '',

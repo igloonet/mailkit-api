@@ -50,10 +50,10 @@ abstract class BaseManager
 	}
 
 	/**
-	 * @param string $str
+	 * @param string $str|null
 	 * @return string
 	 */
-	protected function encodeString(?string $str): ?string
+	protected function encodeString(?string $str = null): ?string
 	{
 		return $str === null ? null : base64_encode($str);
 	}
@@ -83,7 +83,7 @@ abstract class BaseManager
 
 		$language = trim(Strings::lower($language));
 
-		if (!in_array($language, $this->enabledLanguages)) {
+		if (!in_array($language, $this->enabledLanguages, true)) {
 			throw new UnsupportedLanguageException($language);
 		}
 

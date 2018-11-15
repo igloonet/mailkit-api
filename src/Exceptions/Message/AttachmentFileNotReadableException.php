@@ -8,6 +8,7 @@ use Throwable;
 
 class AttachmentFileNotReadableException extends IOException implements AttachmentException
 {
+	/** @var null|string  */
 	private $filePath = null;
 
 	public function __construct(string $filePath, string $message = '', int $code = 0, Throwable $previous = null)
@@ -21,7 +22,10 @@ class AttachmentFileNotReadableException extends IOException implements Attachme
 		parent::__construct($message, $code, $previous);
 	}
 
-	public function getFilePath(): string
+	/**
+	 * @return string|null
+	 */
+	public function getFilePath(): ?string
 	{
 		return $this->filePath;
 	}
