@@ -17,13 +17,14 @@
   "require": {
     "php": ">=7.1.0",
     "nette/utils": "^2.5",
-    "ext-xmlrpc": "*"
+    "ext-xmlrpc": "*",
+    "consistence/consistence": "^1.1"
   },
   "require-dev": {
-    "nette/tester": "dev-master",
     "mockery/mockery": "^1.2",
     "phpstan/phpstan": "^0.10.5",
-    "phpstan/phpstan-strict-rules": "^0.10.1"
+    "phpstan/phpstan-strict-rules": "^0.10.1",
+    "nette/tester": "^2.1"
   },
   "autoload": {
     "psr-4": {

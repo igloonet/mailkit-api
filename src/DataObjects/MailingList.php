@@ -5,16 +5,13 @@ namespace Igloonet\MailkitApi\DataObjects;
 
 class MailingList
 {
-	public const STATUS_ENABLED = 'enabled';
-	public const STATUS_DISABLED = 'disabled';
-
 	/** @var int|null */
 	private $id = null;
 
 	/** @var string|null */
 	private $name = null;
 
-	/** @var string|null */
+	/** @var MailingListStatus|null */
 	private $status = null;
 
 	/** @var string|null */
@@ -59,10 +56,10 @@ class MailingList
 	}
 
 	/**
-	 * @param string|null $status
+	 * @param MailingListStatus|null $status
 	 * @return $this
 	 */
-	public function setStatus(?string $status): self
+	public function setStatus(?MailingListStatus $status): self
 	{
 		$this->status = $this->isValidStatus($status) ? $status : null;
 
@@ -78,14 +75,12 @@ class MailingList
 	}
 
 	/**
-	 * @param null|string $status
+	 * @param MailingListStatus|null $status
 	 * @return bool
 	 */
-	private function isValidStatus(?string $status): bool
+	private function isValidStatus(?MailingListStatus $status): bool
 	{
-		$status = trim($status ?? '');
-
-		return in_array($status, [self::STATUS_ENABLED, self::STATUS_DISABLED]);
+		return in_array($status, [MailingListStatus::STATUS_ENABLED, MailingListStatus::STATUS_DISABLED]);
 	}
 
 	/**
@@ -110,11 +105,11 @@ class MailingList
 	/**
 	 * @param int $id
 	 * @param string $name
-	 * @param string $status
+	 * @param MailingListStatus $status
 	 * @param string $description
 	 * @return MailingList
 	 */
-	public static function create(int $id, string $name, string $status, string $description): self
+	public static function create(int $id, string $name, MailingListStatus $status, string $description): self
 	{
 		$mailingList = new static();
 

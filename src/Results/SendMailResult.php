@@ -3,19 +3,12 @@ declare(strict_types=1);
 
 namespace Igloonet\MailkitApi\Results;
 
+use Igloonet\MailkitApi\DataObjects\SendMailResultStatus;
 use Igloonet\MailkitApi\Exceptions\InvalidResponseException;
 use Igloonet\MailkitApi\RPC\Responses\IRpcResponse;
 
 class SendMailResult implements IApiMethodResult
 {
-	public const STATUS_UPDATE = 0;
-	public const STATUS_INSERT = 1;
-	public const STATUS_INSERT_UNSUBSCRIBE = 2;
-	public const STATUS_UPDATE_UNSUBSCRIBE = 3;
-	public const STATUS_FAULT = 4;
-	public const STATUS_UPDATE_NOT_SENT = 6;
-	public const STATUS_INSERT_NOT_SENT = 7;
-
 	/** @var int|null */
 	private $emailId = null;
 
@@ -25,11 +18,11 @@ class SendMailResult implements IApiMethodResult
 	/** @var int|null */
 	private $messageId = null;
 
-	/** @var int|null */
+	/** @var SendMailResultStatus|null */
 	private $status = null;
 
 
-	public function __construct(?int $emailId, ?int $sendingId, ?int $messageId, ?int $status)
+	public function __construct(?int $emailId, ?int $sendingId, ?int $messageId, ?SendMailResultStatus $status)
 	{
 		$this->emailId = $emailId;
 		$this->sendingId = $sendingId;
@@ -62,9 +55,9 @@ class SendMailResult implements IApiMethodResult
 	}
 
 	/**
-	 * @return int|null
+	 * @return SendMailResultStatus|null
 	 */
-	public function getStatus(): ?int
+	public function getStatus(): ?SendMailResultStatus
 	{
 		return $this->status;
 	}
@@ -86,7 +79,7 @@ class SendMailResult implements IApiMethodResult
 		$emailId = is_numeric($value['data']) && (int)$value['data'] > 0 ? (int)$value['data'] : null;
 		$sendingId = is_numeric($value['data2']) && (int)$value['data2'] > 0 ? (int)$value['data2'] : null;
 		$messageId = is_numeric($value['data3']) && (int)$value['data3'] > 0 ? (int)$value['data3'] : null;
-		$status = is_numeric($value['status']) ? (int)$value['status'] : null;
+		$status = is_numeric($value['status']) ? SendMailResultStatus::get($value['status']): null;
 
 		return new static($emailId, $sendingId, $messageId, $status);
 	}

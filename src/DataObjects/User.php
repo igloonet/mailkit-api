@@ -7,31 +7,15 @@ use Igloonet\MailkitApi\Exceptions\User\InvalidCustomFieldNumberException;
 
 class User
 {
-	public const STATUS_ENABLED = 'enabled'; // aktivní
-	public const STATUS_DISABLED = 'disabled'; // neaktivní
-	public const STATUS_UNKNOWN = 'unknown'; // neznámý
-	public const STATUS_TEMPORARY = 'temporary'; // dočasně nedostupný
-	public const STATUS_PERMANENT = 'permanent'; // trvale nedostupný
-	public const STATUS_UNSUBSCRIBE = 'unsubscribe'; // odhlášený
-
-	public const INSERT_STATUS_UPDATE = 0;
-	public const INSERT_STATUS_INSERT = 1;
-	public const INSERT_STATUS_INSERT_UNSUBSCRIBE = 2;
-	public const INSERT_STATUS_UPDATE_UNSUBSCRIBE = 3;
-	public const INSERT_STATUS_FAULT = 4;
-
-	public const GENDER_MALE = 'M';
-	public const GENDER_FEMALE = 'F';
-
 	public const CUSTOM_FIELDS_CNT = 25;
 
 	/** @var int|null */
 	private $id = null;
 
-	/** @var string|null  */
+	/** @var UserStatus|null  */
 	private $status = null;
 
-	/** @var string|null */
+	/** @var InsertStatus|null */
 	private $insertStatus = null;
 
 	/** @var string|null  */
@@ -55,7 +39,7 @@ class User
 	/** @var string|null */
 	private $company = null;
 
-	/** @var string|null */
+	/** @var Gender|null */
 	private $gender = null;
 
 	/** @var string|null */
@@ -116,10 +100,10 @@ class User
 	}
 
 	/**
-	 * @param string|null $status
+	 * @param UserStatus|null $status
 	 * @return $this
 	 */
-	public function setStatus(?string $status): self
+	public function setStatus(?UserStatus $status): self
 	{
 		$this->status = $this->isValidStatus($status) ? $status : null;
 
@@ -127,29 +111,20 @@ class User
 	}
 
 	/**
-	 * @return string|null
+	 * @return UserStatus|null
 	 */
-	public function getStatus(): ?string
+	public function getStatus(): ?UserStatus
 	{
 		return $this->status;
 	}
 
 	/**
-	 * @param null|string $status
+	 * @param UserStatus|null $status
 	 * @return bool
 	 */
-	private function isValidStatus(?string $status): bool
+	private function isValidStatus(?UserStatus $status): bool
 	{
-		$status = trim($status ?? '');
-
-		return in_array($status, [
-			self::STATUS_ENABLED,
-			self::STATUS_DISABLED,
-			self::STATUS_UNKNOWN,
-			self::STATUS_TEMPORARY,
-			self::STATUS_PERMANENT,
-			self::STATUS_UNSUBSCRIBE
-		]);
+		return in_array($status, UserStatus::getAvailableValues());
 	}
 
 	/**
@@ -164,7 +139,7 @@ class User
 	}
 
 	/**
-	 * @return int|null
+	 * @return InsertStatus|null
 	 */
 	public function getInsertStatus(): ?int
 	{
@@ -177,13 +152,7 @@ class User
 	 */
 	private function isValidInsertStatus(?int $insertStatus): bool
 	{
-		return $insertStatus !== null && in_array($insertStatus, [
-			self::INSERT_STATUS_UPDATE,
-			self::INSERT_STATUS_INSERT,
-			self::INSERT_STATUS_INSERT_UNSUBSCRIBE,
-			self::INSERT_STATUS_UPDATE_UNSUBSCRIBE,
-			self::INSERT_STATUS_FAULT
-		]);
+		return $insertStatus !== null && in_array($insertStatus, InsertStatus::getAvailableValues());
 	}
 
 	/**
@@ -331,9 +300,9 @@ class User
 	}
 
 	/**
-	 * @return string|null
+	 * @return Gender|null
 	 */
-	public function getGender(): ?string
+	public function getGender(): ?Gender
 	{
 		return $this->gender;
 	}
@@ -345,8 +314,7 @@ class User
 	private function isValidGender(string $gender): bool
 	{
 		return in_array(trim($gender), [
-			self::GENDER_MALE,
-			self::GENDER_FEMALE,
+			Gender::getAvailableValues(),
 			'male',
 			'female',
 			'muz',
