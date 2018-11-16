@@ -7,10 +7,10 @@ use Igloonet\MailkitApi\RPC\Exceptions\InvalidRpcResponseDataTypeException;
 use Igloonet\MailkitApi\RPC\Exceptions\InvalidRpcResponseException;
 use Igloonet\MailkitApi\RPC\Exceptions\RpcRequestFailedException;
 use Igloonet\MailkitApi\RPC\Exceptions\RpcResponseUnknownErrorException;
+use Igloonet\MailkitApi\RPC\Exceptions\UnauthorizedException;
 use Igloonet\MailkitApi\RPC\Responses\IRpcResponse;
 use Igloonet\MailkitApi\RPC\Responses\JsonErrorRpcResponse;
 use Igloonet\MailkitApi\RPC\Responses\JsonSuccessRpcResponse;
-use Igloonet\MailkitApi\RPC\Responses\UnauthorizedException;
 use Nette\Utils\Json;
 use Nette\Utils\JsonException;
 use Nette\Utils\Strings;
@@ -132,6 +132,7 @@ class JsonAdapter extends BaseAdapter
 	/**
 	 * @param array $data
 	 * @return array
+	 * @throws JsonException
 	 */
 	private function getStreamContextOptions(array $data): array
 	{
@@ -148,6 +149,7 @@ class JsonAdapter extends BaseAdapter
 	 * @param string $method
 	 * @param array $params
 	 * @return array
+	 * @throws JsonException
 	 */
 	protected function getContent(string $method, array $params): array
 	{

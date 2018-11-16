@@ -108,7 +108,7 @@ class User
 	 */
 	public function setStatus(?UserStatus $status): self
 	{
-		$this->status = $this->isValidStatus($status) ? $status : null;
+		$this->status = $status;
 
 		return $this;
 	}
@@ -122,21 +122,12 @@ class User
 	}
 
 	/**
-	 * @param UserStatus|null $status
-	 * @return bool
-	 */
-	private function isValidStatus(?UserStatus $status): bool
-	{
-		return in_array($status, UserStatus::getAvailableValues(), true);
-	}
-
-	/**
 	 * @param InsertStatus|null $insertStatus
 	 * @return $this
 	 */
 	public function setInsertStatus(?InsertStatus $insertStatus): self
 	{
-		$this->insertStatus = $this->isValidInsertStatus($insertStatus) ? $insertStatus : null;
+		$this->insertStatus = $insertStatus;
 
 		return $this;
 	}
@@ -147,15 +138,6 @@ class User
 	public function getInsertStatus(): ?InsertStatus
 	{
 		return $this->insertStatus;
-	}
-
-	/**
-	 * @param InsertStatus|null $insertStatus
-	 * @return bool
-	 */
-	private function isValidInsertStatus(?InsertStatus $insertStatus): bool
-	{
-		return $insertStatus !== null && in_array($insertStatus, InsertStatus::getAvailableValues(), true);
 	}
 
 	/**
@@ -292,12 +274,12 @@ class User
 	}
 
 	/**
-	 * @param string|null $gender
+	 * @param Gender|null $gender
 	 * @return $this
 	 */
-	public function setGender(?string $gender): self
+	public function setGender(?Gender $gender): self
 	{
-		$this->gender = $gender !== null && $this->isValidGender($gender) ? Gender::get($gender) : null;
+		$this->gender = $gender;
 
 		return $this;
 	}

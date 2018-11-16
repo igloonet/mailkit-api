@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Igloonet\MailkitApi\RPC\Responses;
-
-use Igloonet\MailkitApi\RPC\Exceptions\BaseRpcException;
+namespace Igloonet\MailkitApi\RPC\Exceptions;
 
 class UnauthorizedException extends BaseRpcException
 {
