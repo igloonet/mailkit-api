@@ -5,8 +5,8 @@ namespace Igloonet\MailkitApi\RPC\Adapters;
 
 use Igloonet\MailkitApi\RPC\Exceptions\InvalidRpcResponseException;
 use Igloonet\MailkitApi\RPC\Exceptions\RpcRequestFailedException;
+use Igloonet\MailkitApi\RPC\Exceptions\UnauthorizedException;
 use Igloonet\MailkitApi\RPC\Responses\IRpcResponse;
-use Igloonet\MailkitApi\RPC\Responses\UnauthorizedException;
 use Igloonet\MailkitApi\RPC\Responses\XmlErrorRpcResponse;
 use Igloonet\MailkitApi\RPC\Responses\XmlSuccessRpcResponse;
 use Nette\Utils\Strings;

@@ -110,7 +110,7 @@ class UsersManager extends BaseManager
 			$user->setPrefix($userData['PREFIX'] ?? null);
 			$user->setPhone($userData['PHONE'] ?? null);
 			$user->setStreet($userData['STREET'] ?? null);
-			$user->setStatus(UserStatus::get($userData['STATUS']) ?? null);
+			$user->setStatus(UserStatus::get($userData['STATUS']));
 			$user->setCity($userData['CITY'] ?? null);
 			$user->setCompany($userData['COMPANY'] ?? null);
 			$user->setFirstName($userData['FIRST_NAME'] ?? null);
@@ -122,7 +122,7 @@ class UsersManager extends BaseManager
 			$user->setZip($userData['ZIP'] ?? null);
 			$user->setNickName($userData['NICK_NAME'] ?? null);
 			$user->setReplyTo($userData['REPLY_TO'] ?? null);
-			$user->setGender($userData['GENDER'] ?? null);
+			$user->setGender($userData['GENDER'] ? Gender::get($userData['GENDER']) : null);
 			$user->setCountry($userData['COUNTRY'] ?? null);
 			$user->setMobile($userData['MOBILE'] ?? null);
 			$user->setMailingListId($userData['ID_MAILING_LIST'] ?? null);
